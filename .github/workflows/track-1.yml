@@ -1,4 +1,4 @@
-name: Track Extrack
+name: Updated Track Extrack
 
 on:
   schedule:
@@ -24,9 +24,11 @@ jobs:
           cp -r extracted/* destination/
 
       - name: Commit and push changes
+        env:
+          TOKEN: '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'
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add destination
-          git commit -m "Extracted ZIP and moved contents to destination"
-          git push
+          git commit -m "Extracted ZIP and moved contents to destination" || echo "Nothing to commit"
+          git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
