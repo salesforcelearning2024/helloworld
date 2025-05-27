@@ -1,0 +1,19 @@
+name: Scheduled Task
+
+# 🔁 Run on a schedule (every day at midnight UTC)
+on:
+  schedule:
+    - cron: '0 0 * * *'  # At 00:00 UTC daily
+  workflow_dispatch:      # (Optional) allows manual run from GitHub UI
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: Run a command
+        run: |
+          echo "This runs automatically every day!"
+          # You can run any script or commands here
