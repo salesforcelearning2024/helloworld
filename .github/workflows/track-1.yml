@@ -1,9 +1,9 @@
 name: Updated Track Extrack
 
 on:
-  schedule:
-    - cron: '9 9 * * *'  # At 00:00 UTC daily
-  workflow_dispatch: 
+  push:
+    paths:
+      - 'input.zip'
 
 permissions:
   contents: write
