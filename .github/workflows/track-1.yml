@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'track.zip'
+  workflow_dispatch:
 
 permissions:
   contents: write
