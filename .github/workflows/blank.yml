@@ -1,0 +1,32 @@
+name: Extract and Move ZIP
+
+on:
+  push:
+    paths:
+      - 'track.zip'
+
+jobs:
+  unzip-and-move:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract ZIP file
+        run: |
+          mkdir extracted
+          unzip track.zip -d extracted
+
+      - name: Move extracted files
+        run: |
+          mkdir -p destination
+          cp -r extracted/* destination/
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add destination
+          git commit -m "Extracted ZIP and moved contents to destination"
+          git push
