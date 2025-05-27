@@ -3,7 +3,7 @@ name: Updated Track Extrack
 on:
   push:
     paths:
-      - 'input.zip'
+      - 'track.zip'
 
 permissions:
   contents: write
