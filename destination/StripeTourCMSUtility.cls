@@ -26,7 +26,7 @@ global without sharing class StripeTourCMSUtility
     Boolean isRegionBackDoorEnabed;
 
     // As Per Case 99545
-    public Boolean isRegistrationCapacityReached{get;set;}
+    public Boolean isRegistrationCapacissssstyReached{get;set;}
 
     // As Per Case 99545
     public String eventRoadshowCapacityReachedMessage {get;set;}
