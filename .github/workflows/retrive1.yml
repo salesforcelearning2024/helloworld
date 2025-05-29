@@ -27,7 +27,7 @@ jobs:
           \"manifest\": {
             \"types\": [
               {
-                \"members\": \"*\", 
+                \"members\": \"ZscalerSKOUtility\", 
                 \"name\": \"ApexClass\"
               }
             ],
