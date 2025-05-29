@@ -17,11 +17,11 @@ jobs:
     - name: Authenticate to Salesforce via Auth URL
       run: |
         echo "force://PlatformCLI::5Aep861ZcIr522KYf5_dJGHP0DoGwPBqKHfaF8wtsscbXS_bhKNGNaI7R6VxJStzX6TthdzxX_hOsnosN" > sfdx-auth-url.txt
-        sfdx auth:sfdxurl:store -f sfdx-auth-url.txt -a myOrg
+        sfdx auth:sfdxurl:store -f sfdx-auth-url.txt -a mathan.pandivel@kurinjitech.com.c1
 
     - name: Retrieve Apex Classes
       run: |
-        sfdx force:source:retrieve -x manifest/package.xml -u myOrg
+        sfdx force:source:retrieve -x manifest/package.xml -u mathan.pandivel@kurinjitech.com.c1
 
     - name: Upload Retrieved Classes
       uses: actions/upload-artifact@v4.4.1
