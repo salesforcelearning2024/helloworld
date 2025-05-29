@@ -5,7 +5,7 @@ import json
 
 def authenticate():
     # Write the auth url from env secret to a file
-    auth_url = "force://PlatformCLI::5Aep861ZcIr522KYf5_dJGHP0DoGwPBqKHfaF8wtsscbXS_bhKNGNaI7R6VxJStzX6TthdzxX_hOsnosNYlITIG@eeginc--c1.sandbox.my.salesforce.com"
+    auth_url = "force://PlatformCLI:5Aep861ZcIr522K:Yf5_dJGHP0DoGwPBqKHfaF8wtsscbXS_bhKNGNaI7R6VxJStzX6TthdzxX_hOsnosNYlITIG@eeginc--c1.sandbox.my.salesforce.com"
     if not auth_url:
         print("Missing SFDX_AUTH_URL environment variable")
         sys.exit(1)
