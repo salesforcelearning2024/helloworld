@@ -5,7 +5,7 @@ import json
 
 def authenticate():
     # Write the auth url from env secret to a file
-    auth_url = "force://PlatformCLI::5Aep861ZcIr522KYf5_dJGHP0DoGwPBqKHfaF8wtsscbXS_bhKNGNaI7R6VxJStzX6TthdzxX_hOsnosNYlITIG@eeginc--c1.sandbox.my.salesforce.com"
+    auth_url = ""
     if not auth_url:
         print("Missing SFDX_AUTH_URL environment variable")
         sys.exit(1)
@@ -13,7 +13,7 @@ def authenticate():
         f.write(auth_url)
 
     # Authenticate using sfdx CLI
-    result = subprocess.run(["sfdx", "auth:sfdxurl:store", "-f", "sfdx-auth.txt", "-a", "eeg"], capture_output=True)
+    result = subprocess.run(["sfdx", "auth:sfdxurl:store", "-f", "sfdx-auth.txt", "-a", "myorg"], capture_output=True)
     if result.returncode != 0:
         print("Authentication failed:", result.stderr.decode())
         sys.exit(1)
@@ -29,7 +29,7 @@ def retrieve_apex():
     result = subprocess.run([
         "sfdx", "force:source:retrieve",
         "-x", "manifest/package.xml",
-        "-u", "eeg"
+        "-u", "myorg"
     ], capture_output=True)
 
     if result.returncode != 0:
