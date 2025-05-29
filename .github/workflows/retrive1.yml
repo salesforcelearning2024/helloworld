@@ -34,7 +34,7 @@ jobs:
             \"version\": \"59.0\"
           }
         }" > package.xml
-        sfdx force:source:retrieve -x package.xml -u myOrg -r retrieve
+        sfdx force:source:retrieve -x package.xml -u myOrg
 
     - name: Upload Retrieved Classes
       uses: actions/upload-artifact@v4.4.1
