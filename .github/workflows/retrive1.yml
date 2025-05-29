@@ -26,7 +26,7 @@ jobs:
 
     - name: Authenticate & Retrieve Apex via Python script
       env:
-        SFDX_AUTH_URL: 'force://PlatformCLI::5Aep861ZcIr522KYf5_dJGHP0DoGwPBqKHfaF8wtsscbXS_bhKNGNaI7R6VxJStzX6TthdzxX_hOsnosN'
+        SFDX_AUTH_URL: 'force://PlatformCLI::5Aep861ZcIr522KYf5_dJGHP0DoGwPBqKHfaF8wtsscbXS_bhKNGNaI7R6VxJStzX6TthdzxX_hOsnosNYlITIG@eeginc--c1.sandbox.my.salesforce.com'
       run: python retrieve_apex.py
 
     - name: Upload Retrieved Apex Classes
