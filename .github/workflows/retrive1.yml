@@ -1,4 +1,4 @@
-name: Retrieve Apex Classes
+name: Retrieve Apex Classes with Python
 
 on:
   workflow_dispatch:
@@ -11,20 +11,26 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v3
 
+    - name: Install Node.js (for sfdx)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
     - name: Install Salesforce CLI
-      run: npm install sfdx-cli --global
+      run: npm install -g sfdx-cli
 
-    - name: Authenticate to Salesforce via Auth URL
-      run: |
-        echo "force://PlatformCLI::5Aep861ZcIr522KYf5_dJGHP0DoGwPBqKHfaF8wtsscbXS_bhKNGNaI7R6VxJStzX6TthdzxX_hOsnosN" > sfdx-auth-url.txt
-        sfdx auth:sfdxurl:store -f sfdx-auth-url.txt -a eeg
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
 
-    - name: Retrieve Apex Classes
-      run: |
-        sfdx force:source:retrieve -x manifest/package.xml -u eeg
+    - name: Authenticate & Retrieve Apex via Python script
+      env:
+        SFDX_AUTH_URL: 'force://PlatformCLI::5Aep861ZcIr522KYf5_dJGHP0DoGwPBqKHfaF8wtsscbXS_bhKNGNaI7R6VxJStzX6TthdzxX_hOsnosN'
+      run: python retrieve_apex.py
 
-    - name: Upload Retrieved Classes
-      uses: actions/upload-artifact@v4.4.1
+    - name: Upload Retrieved Apex Classes
+      uses: actions/upload-artifact@v4
       with:
         name: apex-classes
         path: force-app
