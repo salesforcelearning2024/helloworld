@@ -1,0 +1,54 @@
+name: Retrieve Apex Classes from Salesforce (Username-Password Flow)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  retrieve:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Salesforce CLI
+        run: |
+          npm install --global sfdx-cli
+
+      - name: Authenticate with Salesforce (Username-Password OAuth)
+        run: |
+          sfdx auth:web:login \
+            --setalias sf-org \
+            --instanceurl https://login.salesforce.com \
+            --setdefaultusername
+        env:
+          SFDX_CLIENT_ID: '3MVG9GiqKapCZBwFavkzdAcFsh5TOREPYxpRoIU5VJcg.p0jvTTJ6ZgiTHs1Xc3cuLvwEubYoCAkMZ3b0hdDG'
+          SFDX_CLIENT_SECRET: '156D64FCB2724AB6304FCB583B1B4D3480C6951B307BD137804B5FE5A6AC3B9B'
+          SFDX_USERNAME: 'mathan.pandivel@kurinjitech.com.c1'
+          SFDX_PASSWORD: 'Mathan666666*W7Yvb2gMcDqjKjL5dpGyp0DTK'
+
+      - name: Create Manifest for Apex Classes
+        run: |
+          mkdir -p manifest
+          cat > manifest/package.xml <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+  <types>
+    <members>ZscalerSKOUtility</members>
+    <name>ApexClass</name>
+  </types>
+  <version>27.0</version>
+</Package>
+EOF
+
+      - name: Retrieve Apex Classes
+        run: |
+          mkdir -p retrieved
+          sfdx force:mdapi:retrieve -r retrieved -k manifest/package.xml -u sf-org
+          unzip retrieved/unpackaged.zip -d retrieved
+
+      - name: Upload Retrieved Apex Classes
+        uses: actions/upload-artifact@v3
+        with:
+          name: apex-classes
+          path: retrieved/unpackaged/classes/
