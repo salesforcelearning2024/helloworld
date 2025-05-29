@@ -37,7 +37,7 @@ jobs:
         sfdx force:source:retrieve -x package.xml -u myOrg -r retrieve
 
     - name: Upload Retrieved Classes
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.4
       with:
         name: apex-classes
         path: retrieve
