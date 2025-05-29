@@ -1,0 +1,13 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "namespace": "",
+  "sourceApiVersion": "59.0",
+  "sfdx-cli": {
+    "analyticsTracking": false
+  }
+}
